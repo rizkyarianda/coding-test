@@ -6,7 +6,7 @@ class Controllers :
             data = json.load(File)
         return data
     
-    def test(self):
+    def get_all(self):
         data = self.get_data()
         return data
     

@@ -24,18 +24,18 @@ async def check_token(request: Request, call_next):
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello, FastAPI 🚀"}
+    return {"data": "Hello, FastAPI 🚀"}
 
-@app.get("/api/v1/hello")
+@app.get("/api/v1/get-all")
 def read_root():
     controller = Controllers()
-    data = controller.test()
+    data = controller.get_all()
 
-    return {"message": data}
+    return {"data": data}
 
 @app.get("/api/v1/get-by-id/{id}")
 def read_root(id = int):
     controller = Controllers()
     data = controller.find_by_id(id)
 
-    return {"message": data}
+    return {"data": data}
