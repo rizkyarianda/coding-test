@@ -39,3 +39,10 @@ def read_root(id = int):
     data = controller.find_by_id(id)
 
     return {"data": data}
+
+@app.get("/api/v1/get-clients")
+def read_root(id = int):
+    controller = Controllers()
+    data = controller.get_clients()
+
+    return {"data": data}
