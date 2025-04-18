@@ -1,8 +1,27 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from controllers.controllers import Controllers
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# List domain yang diizinkan
+origins = [
+    "http://localhost:3000",
+    "http://webapi.localhost",
+    "http://127.0.0.1:3000",
+    "*",  # ⚠️ Gunakan ini hanya untuk testing/dev, karena ini mengizinkan semua domain
+]
+
+# Tambahkan middleware CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,            # Bisa juga pakai ["*"]
+    allow_credentials=True,
+    allow_methods=["*"],              # Mengizinkan semua method (GET, POST, etc.)
+    allow_headers=["*"],              # Mengizinkan semua headers
+)
+
 API_TOKEN = "super-secret-token"
 
 @app.middleware("http")
