@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Query
 from fastapi.responses import JSONResponse
 from controllers.controllers import Controllers
 from fastapi.middleware.cors import CORSMiddleware
@@ -46,9 +46,9 @@ def read_root():
     return {"data": "Hello, FastAPI 🚀"}
 
 @app.get("/api/v1/get-all")
-def read_root():
+def read_root(deal: int = Query(...)):
     controller = Controllers()
-    data = controller.get_all()
+    data = controller.get_all(deal)
 
     return {"data": data}
 
